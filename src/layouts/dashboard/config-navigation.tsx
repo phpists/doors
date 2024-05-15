@@ -1,7 +1,5 @@
 import { useMemo } from 'react';
 
-import { paths } from 'src/routes/paths';
-
 import { useTranslate } from 'src/locales';
 
 import SvgColor from 'src/components/svg-color';
@@ -55,7 +53,7 @@ export function useNavData() {
           // USER
           {
             title: 'Kundenverwaltung',
-            path: paths.dashboard.user.root,
+            path: '/dashboard',
             icon: ICONS.user,
             children: [
               { title: 'Kundenansicht', path: '/dashboard' },
@@ -66,12 +64,12 @@ export function useNavData() {
           // PRODUCT
           {
             title: 'Geräteverwaltung',
-            path: '/dashboard/management',
+            path: '/management',
             icon: ICONS.lock,
           },
           {
             title: 'Profileübersicht',
-            path: '/dashboard/profile',
+            path: '/profile',
             icon: ICONS.menuItem,
           },
         ],

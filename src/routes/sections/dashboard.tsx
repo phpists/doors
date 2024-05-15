@@ -9,10 +9,8 @@ import { LoadingScreen } from 'src/components/loading-screen';
 
 const IndexPage = lazy(() => import('src/pages/dashboard/one'));
 const Client = lazy(() => import('src/pages/dashboard/Client/Client'));
-const PageThree = lazy(() => import('src/pages/dashboard/three'));
-const PageFour = lazy(() => import('src/pages/dashboard/four'));
-const PageFive = lazy(() => import('src/pages/dashboard/five'));
-const PageSix = lazy(() => import('src/pages/dashboard/six'));
+const Doors = lazy(() => import('src/pages/dashboard/Doors/Doors'));
+const Door = lazy(() => import('src/pages/dashboard/Door/Door'));
 
 // ----------------------------------------------------------------------
 
@@ -29,9 +27,30 @@ export const dashboardRoutes = [
     children: [
       { element: <IndexPage />, index: true },
       { path: 'client/:id', element: <Client /> },
-      { path: 'standorte', element: <>standorte</> },
-      { path: 'management', element: <>management</> },
-      { path: 'profile', element: <>profile</> },
+      { path: 'standorte', element: <Doors /> },
+      { path: 'standorte/:id', element: <Door /> },
     ],
+  },
+  {
+    path: '/management',
+    element: (
+      <DashboardLayout>
+        <Suspense fallback={<LoadingScreen />}>
+          <Outlet />
+        </Suspense>
+      </DashboardLayout>
+    ),
+    children: [{ element: <>management</>, index: true }],
+  },
+  {
+    path: '/profile',
+    element: (
+      <DashboardLayout>
+        <Suspense fallback={<LoadingScreen />}>
+          <Outlet />
+        </Suspense>
+      </DashboardLayout>
+    ),
+    children: [{ element: <>profile</>, index: true }],
   },
 ];
