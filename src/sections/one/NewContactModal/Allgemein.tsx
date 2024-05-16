@@ -22,13 +22,13 @@ export const Allgemein = () => (
         </div>
         <div className="id-number">ID/Kundennummer: 0253656</div>
       </div>
-      <TextField variant="outlined" required fullWidth label="Name 1" />
-      <TextField variant="outlined" fullWidth label="Name 2" />
+      <TextField variant="outlined" required fullWidth label="Name 1" className="field" />
+      <TextField variant="outlined" fullWidth label="Name 2" className="field" />
       <div className="field-group">
-        <TextField variant="outlined" required fullWidth label="Strasse" />
-        <TextField variant="outlined" label="Haus Nr. " />
+        <TextField variant="outlined" required fullWidth label="Strasse" className="field" />
+        <TextField variant="outlined" label="Haus Nr. " className="field" />
       </div>
-      <TextField variant="outlined" fullWidth label="Addresszusatz " />
+      <TextField variant="outlined" fullWidth label="Addresszusatz " className="field" />
       <div className="field-group">
         <TextField
           variant="outlined"
@@ -47,14 +47,21 @@ export const Allgemein = () => (
     </div>
     <div className="fileds-list">
       <div className="field-group">
-        <TextField variant="outlined" fullWidth label="Telephone 1" />
-        <TextField variant="outlined" fullWidth label="Telephone 2" />
+        <TextField variant="outlined" fullWidth label="Telephone 1" className="field" />
+        <TextField variant="outlined" fullWidth label="Telephone 2" className="field" />
       </div>
       <div className="field-group">
-        <TextField variant="outlined" fullWidth label="E-Mail" />
-        <TextField variant="outlined" fullWidth label="Webseite" />
+        <TextField variant="outlined" fullWidth label="E-Mail" className="field" />
+        <TextField variant="outlined" fullWidth label="Webseite" className="field" />
       </div>
-      <TextField multiline rows={11} variant="outlined" fullWidth label="Notiz/Bemerkungen" />
+      <TextField
+        multiline
+        rows={11}
+        variant="outlined"
+        fullWidth
+        label="Notiz/Bemerkungen"
+        className="field"
+      />
     </div>
   </StyledAllgemein>
 );
@@ -98,5 +105,23 @@ const StyledAllgemein = styled.div`
   }
   .select-wrapper {
     min-width: 100px;
+  }
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+    .field-group {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .field,
+    .select-wrapper {
+      width: 100%;
+    }
+    .header {
+      flex-direction: column;
+      align-items: start;
+      .id-number {
+        width: 100%;
+      }
+    }
   }
 `;

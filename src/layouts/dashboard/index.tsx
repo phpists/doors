@@ -4,6 +4,7 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 import { useSettingsContext } from 'src/components/settings';
+import { ProfileInfoModal } from 'src/components/ProfileInfoModal';
 
 import Main from './main';
 import Header from './header';
@@ -50,7 +51,7 @@ export default function DashboardLayout({ children }: Props) {
     return (
       <>
         <Header onOpenNav={nav.onTrue} />
-
+        <ProfileInfoModal />
         <Box
           sx={{
             minHeight: 1,
@@ -60,7 +61,7 @@ export default function DashboardLayout({ children }: Props) {
         >
           {lgUp ? renderNavMini : renderNavVertical}
 
-          <Main>{children}</Main>
+          <Main>{children} </Main>
         </Box>
       </>
     );
@@ -69,6 +70,7 @@ export default function DashboardLayout({ children }: Props) {
   return (
     <>
       <Header onOpenNav={nav.onTrue} />
+      <ProfileInfoModal />
 
       <Box
         sx={{

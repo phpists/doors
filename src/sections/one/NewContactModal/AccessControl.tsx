@@ -72,4 +72,7 @@ const StyledAccessControl = styled.div`
   .select-wrapper {
     width: 200px;
   }
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+  }
 `;

@@ -63,13 +63,13 @@ export function useNavData() {
 
           // PRODUCT
           {
-            title: 'Geräteverwaltung',
+            title: 'Geräteansicht',
             path: '/management',
             icon: ICONS.lock,
           },
           {
             title: 'Profileübersicht',
-            path: '/profile',
+            path: `?profileModal=true`,
             icon: ICONS.menuItem,
           },
         ],

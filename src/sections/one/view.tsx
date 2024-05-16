@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 
 import { useSettingsContext } from 'src/components/settings';
@@ -12,6 +13,10 @@ export default function OneView() {
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
+      <Typography variant="h4" className="page-title">
+        {' '}
+        Kundenansicht{' '}
+      </Typography>
       <Header />
       <ClientsTable />
     </Container>

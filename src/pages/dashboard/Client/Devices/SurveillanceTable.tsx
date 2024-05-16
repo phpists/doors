@@ -1,19 +1,22 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router';
-import { useState, useEffect } from 'react';
+import { useState, Fragment, useEffect } from 'react';
 
 import Table from '@mui/material/Table';
-import { Pagination } from '@mui/material';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
+import { Pagination, Typography } from '@mui/material';
 import TableContainer from '@mui/material/TableContainer';
 
 import { StatusIcon } from 'src/assets/icons/status';
 import settingIcon from 'src/assets/icons/setting.svg';
 import splitIcon from 'src/assets/icons/split-cells.svg';
 
+import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
+import { ManageDoorModal } from 'src/components/ManageDoorModal';
+import { ManageDoorTimeModal } from 'src/components/ManageDoorTimeModal';
 import {
   useTable,
   emptyRows,
@@ -62,7 +65,7 @@ const TABLE_DATA: RowDataType[] = [
   ),
   createData(
     'Gäupark',
-    'LS-2330956',
+    'LS-2330957',
     'Tür',
     'Türe 1. UG, Zugang Nord',
     4622,
@@ -73,7 +76,7 @@ const TABLE_DATA: RowDataType[] = [
   ),
   createData(
     'Gäupark',
-    'LS-2330956',
+    'LS-2330958',
     'Tür',
     'Türe 1. UG, Zugang Nord',
     4622,
@@ -84,7 +87,7 @@ const TABLE_DATA: RowDataType[] = [
   ),
   createData(
     'Gäupark',
-    'LS-2330956',
+    'LS-2330959',
     'Tür',
     'Türe 1. UG, Zugang Nord',
     4622,
@@ -98,12 +101,12 @@ const TABLE_DATA: RowDataType[] = [
 const TABLE_HEAD = [
   { id: 'location', label: 'Standort' },
   { id: 'id', label: 'Gerätet ID' },
-  { id: 'type', label: 'Gerätetyp' },
-  { id: 'name', label: 'Gerät NamePLZ' },
-  { id: 'plz', label: 'PLZ' },
-  { id: 'ort', label: 'Ort' },
-  { id: 'condition', label: 'Zustand' },
-  { id: 'battery', label: 'Akkuspannung' },
+  { id: 'type', label: 'Gerätetyp', className: 'mobile-cell' },
+  { id: 'name', label: 'Gerät NamePLZ', className: 'mobile-cell' },
+  { id: 'plz', label: 'PLZ', className: 'mobile-cell' },
+  { id: 'ort', label: 'Ort', className: 'mobile-cell' },
+  { id: 'condition', label: 'Zustand', className: 'mobile-cell' },
+  { id: 'battery', label: 'Akkuspannung', className: 'mobile-cell' },
   { id: 'actions', label: 'Aktionen' },
   { id: 'status', label: 'Status', align: 'center' },
 ];
@@ -115,6 +118,9 @@ export const SurveillanceTable = () => {
   const navigate = useNavigate();
 
   const [tableData, setTableData] = useState<RowDataType[]>([]);
+  const [activeRow, setActiveRow] = useState<any>(null);
+  const [manageDoorModal, setManageDoorModal] = useState(false);
+  const [manageDoorTimeModal, setManageDoorTimeModal] = useState(false);
 
   useEffect(() => {
     setTableData(TABLE_DATA);
@@ -151,9 +157,14 @@ export const SurveillanceTable = () => {
 
   return (
     <StyledSurveillanceTable>
+      <ManageDoorModal open={manageDoorModal} onClose={() => setManageDoorModal(false)} />
+      <ManageDoorTimeModal
+        open={manageDoorTimeModal}
+        onClose={() => setManageDoorTimeModal(false)}
+      />
       <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
         <Scrollbar>
-          <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 800 }}>
+          <Table size={table.dense ? 'small' : 'medium'}>
             <TableHeadCustom
               order={table.order}
               orderBy={table.orderBy}
@@ -170,41 +181,96 @@ export const SurveillanceTable = () => {
                   table.page * table.rowsPerPage + table.rowsPerPage
                 )
                 .map((row) => (
-                  <TableRow hover key={row.id} className="row">
-                    <TableCell onClick={() => navigate('/dashboard/standorte/1')}>
-                      {row.location}
-                    </TableCell>
-                    <TableCell onClick={() => navigate('/dashboard/standorte/1')}>
-                      {row.id}
-                    </TableCell>
-                    <TableCell onClick={() => navigate('/dashboard/standorte/1')}>
-                      {row.type}
-                    </TableCell>
-                    <TableCell onClick={() => navigate('/dashboard/standorte/1')}>
-                      {row.name}
-                    </TableCell>
-                    <TableCell onClick={() => navigate('/dashboard/standorte/1')}>
-                      {row.plz}
-                    </TableCell>
-                    <TableCell onClick={() => navigate('/dashboard/standorte/1')}>
-                      {row.ort}
-                    </TableCell>
-                    <TableCell onClick={() => navigate('/dashboard/standorte/1')}>
-                      {row.condition}
-                    </TableCell>
-                    <TableCell onClick={() => navigate('/dashboard/standorte/1')}>
-                      {row.battery}
-                    </TableCell>
-                    <TableCell>
-                      <div className="actions-cell">
-                        <img src={splitIcon} alt="" />
-                        <img src={settingIcon} alt="" />
-                      </div>
-                    </TableCell>
-                    <TableCell onClick={() => navigate('/dashboard/standorte/1')} align="center">
-                      <StatusIcon active={row.status} />
-                    </TableCell>
-                  </TableRow>
+                  <Fragment key={row.id}>
+                    <TableRow
+                      hover
+                      key={row.id}
+                      className={`row ${activeRow === row.id && 'active-row'}`}
+                    >
+                      <TableCell onClick={() => navigate('/dashboard/standorte/1')}>
+                        {row.location}
+                      </TableCell>
+                      <TableCell onClick={() => navigate('/dashboard/standorte/1')}>
+                        {row.id}
+                      </TableCell>
+                      <TableCell
+                        className="mobile-cell"
+                        onClick={() => navigate('/dashboard/standorte/1')}
+                      >
+                        {row.type}
+                      </TableCell>
+                      <TableCell
+                        className="mobile-cell"
+                        onClick={() => navigate('/dashboard/standorte/1')}
+                      >
+                        {row.name}
+                      </TableCell>
+                      <TableCell
+                        className="mobile-cell"
+                        onClick={() => navigate('/dashboard/standorte/1')}
+                      >
+                        {row.plz}
+                      </TableCell>
+                      <TableCell
+                        className="mobile-cell"
+                        onClick={() => navigate('/dashboard/standorte/1')}
+                      >
+                        {row.ort}
+                      </TableCell>
+                      <TableCell
+                        className="mobile-cell"
+                        onClick={() => navigate('/dashboard/standorte/1')}
+                      >
+                        {row.condition}
+                      </TableCell>
+                      <TableCell
+                        className="mobile-cell"
+                        onClick={() => navigate('/dashboard/standorte/1')}
+                      >
+                        {row.battery}
+                      </TableCell>
+                      <TableCell>
+                        <div className="actions-cell">
+                          <button type="button" onClick={() => setManageDoorModal(true)}>
+                            <img src={splitIcon} alt="" />
+                          </button>
+                          <button type="button" onClick={() => setManageDoorTimeModal(true)}>
+                            <img src={settingIcon} alt="" />
+                          </button>
+                          <button
+                            type="button"
+                            className="table-arrow-more"
+                            onClick={() => setActiveRow(activeRow === row.id ? null : row.id)}
+                          >
+                            <Iconify icon="mdi:arrow-down" />
+                          </button>
+                        </div>
+                      </TableCell>
+                      <TableCell onClick={() => navigate('/dashboard/standorte/1')} align="center">
+                        <StatusIcon active={row.status} />
+                      </TableCell>
+                    </TableRow>
+                    {activeRow === row.id ? (
+                      <TableRow className="active-row">
+                        <TableCell colSpan={5}>
+                          <div className="cell-mobile-more">
+                            {TABLE_HEAD?.filter((cell) => cell.className === 'mobile-cell')?.map(
+                              (cell) => (
+                                <Fragment key={cell.id}>
+                                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                    {cell.label}
+                                  </Typography>
+                                  <Typography variant="body2" fontWeight={600}>
+                                    {row[cell.id as keyof RowDataType]}
+                                  </Typography>
+                                </Fragment>
+                              )
+                            )}
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ) : null}
+                  </Fragment>
                 ))}
 
               <TableEmptyRows
@@ -246,5 +312,11 @@ const StyledSurveillanceTable = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 20px;
+  }
+  button {
+    border: none;
+    outline: none;
+    border: none;
+    background: none;
   }
 `;

@@ -11,29 +11,31 @@ export const Header = () => {
   const [newContactModal, setNewContactModal] = useState(false);
 
   return (
-    <StyledHeader>
+    <>
       <NewContactModal open={newContactModal} onClose={() => setNewContactModal(false)} />
-      <Button variant="contained" color="info" startIcon={<Iconify icon="ic:baseline-edit" />}>
-        Bearbeiten
-      </Button>
-      <Button variant="contained" startIcon={<Iconify icon="bxs:file-export" />}>
-        Export
-      </Button>
-      <Button
-        variant="contained"
-        startIcon={<Iconify icon="mdi:plus-box" />}
-        onClick={() => setNewContactModal(true)}
-      >
-        Neuer
-      </Button>
-      <Button
-        variant="contained"
-        color="error"
-        startIcon={<Iconify icon="mingcute:delete-3-fill" />}
-      >
-        Löschen
-      </Button>
-    </StyledHeader>
+      <StyledHeader>
+        <Button variant="contained" color="info" startIcon={<Iconify icon="ic:baseline-edit" />}>
+          Bearbeiten
+        </Button>
+        <Button variant="contained" startIcon={<Iconify icon="bxs:file-export" />}>
+          Export
+        </Button>
+        <Button
+          variant="contained"
+          startIcon={<Iconify icon="mdi:plus-box" />}
+          onClick={() => setNewContactModal(true)}
+        >
+          Neuer
+        </Button>
+        <Button
+          variant="contained"
+          color="error"
+          startIcon={<Iconify icon="mingcute:delete-3-fill" />}
+        >
+          Löschen
+        </Button>
+      </StyledHeader>
+    </>
   );
 };
 
@@ -50,4 +52,13 @@ const StyledHeader = styled.div`
   height: 60px;
   border-radius: 12px;
   border: 1px dashed rgba(145, 158, 171, 0.2);
+  @media (max-width: 800px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    height: max-content;
+  }
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+  }
 `;

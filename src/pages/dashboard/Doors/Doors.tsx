@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
+import { Typography } from '@mui/material';
+
 import { Header } from './Header';
-import { DoorsTableTable } from './DoorsTable';
+import { DoorsTable } from './DoorsTable';
 
 const Doors = () => (
   <StyledDoors>
+    <Typography variant="h4" className="page-title">
+      Standorte & Überwachung
+    </Typography>
     <Header />
-    <DoorsTableTable />
+    <DoorsTable />
   </StyledDoors>
 );
 

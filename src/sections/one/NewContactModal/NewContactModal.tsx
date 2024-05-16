@@ -37,7 +37,7 @@ export const NewContactModal = ({ open, onClose }: Props) => {
       <Dialog open={open} onClose={onClose} maxWidth={1000}>
         <DialogTitle>Neuer Kontakt</DialogTitle>
 
-        <DialogContent style={{ width: '95svw', maxWidth: 1000 }}>
+        <DialogContent style={{ width: '90svw', maxWidth: 1000 }}>
           <Tabs value={currentTab} onChange={(e, tab) => setCurrentTab(tab)}>
             {TABS.slice(0, 3).map((tab) => (
               <Tab key={tab.value} value={tab.value} label={tab.label} />

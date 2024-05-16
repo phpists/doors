@@ -15,4 +15,7 @@ const StyledMainInfo = styled.div`
   grid-template-columns: 50% 45%;
   gap: 40px;
   margin-bottom: 60px;
+  @media (max-width: 1100px) {
+    grid-template-columns: 1fr;
+  }
 `;

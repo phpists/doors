@@ -11,6 +11,7 @@ const IndexPage = lazy(() => import('src/pages/dashboard/one'));
 const Client = lazy(() => import('src/pages/dashboard/Client/Client'));
 const Doors = lazy(() => import('src/pages/dashboard/Doors/Doors'));
 const Door = lazy(() => import('src/pages/dashboard/Door/Door'));
+const Manage = lazy(() => import('src/pages/dashboard/Manage/Manage'));
 
 // ----------------------------------------------------------------------
 
@@ -40,7 +41,7 @@ export const dashboardRoutes = [
         </Suspense>
       </DashboardLayout>
     ),
-    children: [{ element: <>management</>, index: true }],
+    children: [{ element: <Manage />, index: true }],
   },
   {
     path: '/profile',
@@ -52,5 +53,21 @@ export const dashboardRoutes = [
       </DashboardLayout>
     ),
     children: [{ element: <>profile</>, index: true }],
+  },
+  {
+    path: '*',
+    element: (
+      <DashboardLayout>
+        <Suspense fallback={<LoadingScreen />}>
+          <Outlet />
+        </Suspense>
+      </DashboardLayout>
+    ),
+    children: [
+      { element: <IndexPage />, index: true },
+      { path: 'dashboard/client/:id', element: <Client /> },
+      { path: 'dashboard/standorte', element: <Doors /> },
+      { path: 'dashboard/standorte/:id', element: <Door /> },
+    ],
   },
 ];

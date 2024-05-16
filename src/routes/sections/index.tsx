@@ -1,17 +1,13 @@
 import { lazy } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 
-import MainLayout from 'src/layouts/main';
 import CompactLayout from 'src/layouts/compact';
 import AuthClassicLayout from 'src/layouts/auth/classic';
 
 import { ModernVerifyView } from 'src/sections/auth-demo/modern';
 
 // import { PATH_AFTER_LOGIN } from 'src/config-global';
-import { authDemoRoutes } from './auth-demo';
-import { HomePage, mainRoutes } from './main';
 import { dashboardRoutes } from './dashboard';
-import { componentsRoutes } from './components';
 
 const LoginClassicPage = lazy(() => import('src/pages/auth-demo/classic/login'));
 // ----------------------------------------------------------------------
@@ -27,27 +23,27 @@ export default function Router() {
     // ----------------------------------------------------------------------
 
     // SET INDEX PAGE WITH HOME PAGE
-    {
-      path: '/',
-      element: (
-        <MainLayout>
-          <HomePage />
-        </MainLayout>
-      ),
-    },
+    // {
+    //   path: '/',
+    //   element: (
+    //     <MainLayout>
+    //       <HomePage />
+    //     </MainLayout>
+    //   ),
+    // },
 
-    // Auth routes
-    // ...authRoutes,
-    ...authDemoRoutes,
+    // // Auth routes
+    // // ...authRoutes,
+    // ...authDemoRoutes,
 
     // Dashboard routes
     ...dashboardRoutes,
 
-    // Main routes
-    ...mainRoutes,
+    // // Main routes
+    // ...mainRoutes,
 
-    // Components routes
-    ...componentsRoutes,
+    // // Components routes
+    // ...componentsRoutes,
 
     {
       path: '/auth',

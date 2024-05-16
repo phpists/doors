@@ -103,4 +103,7 @@ const StyledInfo = styled.div`
     grid-template-columns: 150px 1fr;
     gap: 10px;
   }
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
 `;

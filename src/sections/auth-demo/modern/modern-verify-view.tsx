@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Stack from '@mui/material/Stack';
@@ -17,6 +18,7 @@ export default function ModernVerifyView() {
     code: Yup.string().min(6, 'Code must be at least 6 characters').required('Code is required'),
     email: Yup.string().required('Email is required').email('Email must be a valid email address'),
   });
+  const navigate = useNavigate();
 
   const defaultValues = {
     code: '',
@@ -34,13 +36,14 @@ export default function ModernVerifyView() {
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      console.info('DATA', data);
-    } catch (error) {
-      console.error(error);
-    }
+  const onSubmit = handleSubmit((data) => {
+    navigate('/dashboard');
+    // try {
+    //   await new Promise((resolve) => setTimeout(resolve, 500));
+    //   console.info('DATA', data);
+    // } catch (error) {
+    //   console.error(error);
+    // }
   });
 
   const renderForm = (
@@ -53,6 +56,7 @@ export default function ModernVerifyView() {
         type="submit"
         variant="contained"
         loading={isSubmitting}
+        onClick={() => navigate('/dashboard')}
       >
         Prüfen
       </LoadingButton>

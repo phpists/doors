@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, Fragment, useEffect } from 'react';
 
 import Table from '@mui/material/Table';
+import { Typography } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
@@ -54,13 +55,13 @@ const TABLE_DATA = [
 
 const TABLE_HEAD = [
   { id: 'type', label: 'Typ', align: 'left' },
-  { id: 'id', label: 'ID/Nummer', align: 'center' },
-  { id: 'location', label: 'Anzahl Standorte', align: 'center' },
+  { id: 'id', label: 'ID/Nummer', align: 'center', className: 'mobile-cell' },
+  { id: 'location', label: 'Anzahl Standorte', align: 'center', className: 'mobile-cell' },
   { id: 'name', label: 'Name', align: 'center' },
-  { id: 'plz', label: 'PLZ', align: 'center' },
-  { id: 'ort', label: 'Ort', align: 'center' },
-  { id: 'tel', label: 'Telefon', align: 'center' },
-  { id: 'devices', label: 'Anzahl Geräte', align: 'center' },
+  { id: 'plz', label: 'PLZ', align: 'center', className: 'mobile-cell' },
+  { id: 'ort', label: 'Ort', align: 'center', className: 'mobile-cell' },
+  { id: 'tel', label: 'Telefon', align: 'center', className: 'mobile-cell' },
+  { id: 'devices', label: 'Anzahl Geräte', align: 'center', className: 'mobile-cell' },
   { id: 'actions', label: 'Aktionen', align: 'center' },
 ];
 
@@ -70,6 +71,7 @@ export const ClientsTable = () => {
   });
 
   const [tableData, setTableData] = useState<RowDataType[]>([]);
+  const [activeRow, setActiveRow] = useState<any>(null);
 
   useEffect(() => {
     setTableData(TABLE_DATA);
@@ -127,7 +129,7 @@ export const ClientsTable = () => {
         />
 
         <Scrollbar>
-          <Table size={table.dense ? 'small' : 'medium'} sx={{ minWidth: 800 }}>
+          <Table size={table.dense ? 'small' : 'medium'}>
             <TableHeadCustom
               order={table.order}
               orderBy={table.orderBy}
@@ -150,35 +152,75 @@ export const ClientsTable = () => {
                   table.page * table.rowsPerPage + table.rowsPerPage
                 )
                 .map((row) => (
-                  <TableRow hover key={row.id} selected={table.selected.includes(row.id)}>
-                    <TableCell padding="checkbox" onClick={() => table.onSelectRow(row.id)}>
-                      <Checkbox checked={table.selected.includes(row.name)} />
-                    </TableCell>
-                    <TableCell onClick={() => table.onSelectRow(row.id)}>
-                      {' '}
-                      <Iconify
-                        icon={row?.type === 'building' ? 'ph:building' : 'ion:person-sharp'}
-                      />{' '}
-                    </TableCell>
-                    <TableCell onClick={() => table.onSelectRow(row.id)}> {row.id} </TableCell>
-                    <TableCell onClick={() => table.onSelectRow(row.id)}>
-                      {' '}
-                      {row.location}{' '}
-                    </TableCell>
-                    <TableCell onClick={() => table.onSelectRow(row.id)}> {row.name} </TableCell>
-                    <TableCell onClick={() => table.onSelectRow(row.id)}> {row.plz} </TableCell>
-                    <TableCell onClick={() => table.onSelectRow(row.id)}> {row.ort} </TableCell>
-                    <TableCell onClick={() => table.onSelectRow(row.id)}> {row.tel} </TableCell>
-                    <TableCell onClick={() => table.onSelectRow(row.id)}> {row.devices} </TableCell>
-                    <TableCell>
-                      <div className="row-actions">
-                        <NavLink to="/dashboard/client/1">
-                          <Iconify icon="mdi:eye" />
-                        </NavLink>
-                        <Iconify icon="mingcute:delete-3-fill" />
-                      </div>
-                    </TableCell>
-                  </TableRow>
+                  <Fragment key={row.id}>
+                    <TableRow
+                      hover
+                      selected={table.selected.includes(row.id)}
+                      className={`${activeRow === row.id && 'active-row'}`}
+                    >
+                      <TableCell padding="checkbox" onClick={() => table.onSelectRow(row.id)}>
+                        <Checkbox checked={table.selected.includes(row.name)} />
+                      </TableCell>
+                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                        <Iconify
+                          icon={row?.type === 'building' ? 'ph:building' : 'ion:person-sharp'}
+                        />
+                      </TableCell>
+                      <TableCell onClick={() => table.onSelectRow(row.id)}> {row.id} </TableCell>
+                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                        {row.location}
+                      </TableCell>
+                      <TableCell onClick={() => table.onSelectRow(row.id)}> {row.name} </TableCell>
+                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                        {row.plz}
+                      </TableCell>
+                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                        {row.ort}
+                      </TableCell>
+                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                        {row.tel}
+                      </TableCell>
+                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                        {row.devices}
+                      </TableCell>
+                      <TableCell>
+                        <div className="row-actions">
+                          <NavLink to="/dashboard/client/1">
+                            <Iconify icon="mdi:eye" />
+                          </NavLink>
+                          <Iconify icon="mingcute:delete-3-fill" />
+                          <button
+                            type="button"
+                            className="table-arrow-more"
+                            onClick={() => setActiveRow(activeRow === row.id ? null : row.id)}
+                          >
+                            <Iconify icon="mdi:arrow-down" />
+                          </button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                    {activeRow === row.id ? (
+                      <TableRow className="active-row">
+                        <TableCell />
+                        <TableCell colSpan={5}>
+                          <div className="cell-mobile-more">
+                            {TABLE_HEAD?.filter((cell) => cell.className === 'mobile-cell')?.map(
+                              (cell) => (
+                                <Fragment key={cell.id}>
+                                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                    {cell.label}
+                                  </Typography>
+                                  <Typography variant="body2" fontWeight={600}>
+                                    {row[cell.id as keyof RowDataType]}
+                                  </Typography>
+                                </Fragment>
+                              )
+                            )}
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ) : null}
+                  </Fragment>
                 ))}
 
               <TableEmptyRows
@@ -206,6 +248,7 @@ const StyledClientsTable = styled.div`
     svg {
       cursor: pointer;
       transition: all 0.3s;
+      flex-shrink: 0;
       &:hover {
         opacity: 0.5;
       }

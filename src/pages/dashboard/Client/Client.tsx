@@ -14,6 +14,8 @@ const Client = () => (
   </StyledClient>
 );
 
-const StyledClient = styled.div``;
+const StyledClient = styled.div`
+  padding: 0 10px;
+`;
 
 export default Client;

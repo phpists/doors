@@ -73,4 +73,15 @@ const StyledHeader = styled.div`
   .delete-icon {
     margin-right: 20px;
   }
+  @media (max-width: 600px) {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    height: max-content;
+    .select-wrapper {
+      width: 100%;
+    }
+    .delete-icon {
+      margin-right: 0px;
+    }
+  }
 `;

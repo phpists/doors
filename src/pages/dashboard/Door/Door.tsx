@@ -12,6 +12,8 @@ const Door = () => (
   </StyledDoor>
 );
 
-const StyledDoor = styled.div``;
+const StyledDoor = styled.div`
+  padding: 0 10px;
+`;
 
 export default Door;

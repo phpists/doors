@@ -54,7 +54,7 @@ export const Text = () => (
       <div>
         <div className="text-group-item">
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Telefon 1{' '}
+            Telefon 1
           </Typography>
           <div>
             <Typography variant="body2" fontWeight={600}>
@@ -76,7 +76,7 @@ export const Text = () => (
       <div>
         <div className="text-group-item">
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            E-Mail{' '}
+            E-Mail
           </Typography>
           <div>
             <Typography variant="body2" fontWeight={600}>
@@ -86,11 +86,11 @@ export const Text = () => (
         </div>
         <div className="text-group-item">
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Webseite{' '}
+            Webseite
           </Typography>
           <div>
             <Typography variant="body2" fontWeight={600}>
-              www.migros.ch{' '}
+              www.migros.ch
             </Typography>
           </div>
         </div>
@@ -126,5 +126,10 @@ const StyledText = styled.div`
   }
   .note {
     margin-top: 30px;
+  }
+  @media (max-width: 800px) {
+    .text-group {
+      grid-template-columns: 1fr;
+    }
   }
 `;
