@@ -12,7 +12,7 @@ export const MainInfo = () => (
 
 const StyledMainInfo = styled.div`
   display: grid;
-  grid-template-columns: 50% 45%;
+  grid-template-columns: 45% 50%;
   gap: 40px;
   margin-bottom: 60px;
   @media (max-width: 1100px) {

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { Fragment, useState } from 'react';
 
 import Table from '@mui/material/Table';
-import { Typography } from '@mui/material';
 import TableRow from '@mui/material/TableRow';
+import { Box, Typography } from '@mui/material';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
@@ -26,16 +26,19 @@ function createData(id: number, title: string, address: string, count: number) {
 }
 
 const TABLE_DATA: RowType[] = [
-  createData(1, 'Gäupark', 'Hausimollstrasse 1, 4622 Egerkingen', 14),
-  createData(2, 'M- Oensingen', 'Hausimollstrasse 1, 4622 Egerkingen', 4),
-  createData(3, 'Gäupark', 'Hausimollstrasse 1, 4622 Egerkingen', 24),
+  createData(1, 'Gäupark', 'Hausimollstrasse 1', 14),
+  createData(2, 'M- Oensingen', 'Hausimollstrasse 1', 4),
+  createData(3, 'Gäupark', 'Hausimollstrasse ', 24),
+  createData(1, 'Gäupark', 'Hausimollstrasse 1', 14),
+  createData(2, 'M- Oensingen', 'Hausimollstrasse 1', 4),
+  createData(3, 'Gäupark', 'Hausimollstrasse ', 24),
 ];
 
 const TABLE_HEAD = [
   { id: 'id', label: 'PN', width: '1px' },
   { id: 'title', label: 'Titel' },
   { id: 'address', label: 'Adresse', className: 'mobile-cell' },
-  { id: 'count', label: 'Anzahl Geräte ' },
+  { id: 'count', label: 'Anzahl Geräte ', className: 'small-cell' },
   { id: 'actions', label: 'Aktionen' },
 ];
 
@@ -48,17 +51,33 @@ export const StandorteTable = () => {
     <StyledStandorteTable>
       <TableContainer sx={{ mt: 3, overflow: 'unset' }}>
         <Scrollbar>
-          <Table>
+          <Table size="small">
             <TableHeadCustom headLabel={TABLE_HEAD} />
 
             <TableBody>
               {TABLE_DATA.map((row) => (
                 <Fragment key={row.id}>
                   <TableRow className={`${activeRow === row.id && 'active-row'}`}>
-                    <TableCell>{row.id}</TableCell>
-                    <TableCell>{row.title}</TableCell>
-                    <TableCell className="mobile-cell">{row.address}</TableCell>
-                    <TableCell>{row.count}</TableCell>
+                    <TableCell>
+                      <Box component="span" className="table-cell-text">
+                        {row.id}
+                      </Box>{' '}
+                    </TableCell>
+                    <TableCell>
+                      <Box component="span" className="table-cell-text">
+                        {row.title}
+                      </Box>{' '}
+                    </TableCell>
+                    <TableCell className="mobile-cell">
+                      <Box component="span" className="table-cell-text">
+                        {row.address}
+                      </Box>{' '}
+                    </TableCell>
+                    <TableCell>
+                      <Box component="span" className="table-cell-text">
+                        {row.count}
+                      </Box>{' '}
+                    </TableCell>
                     <TableCell>
                       <div className="row-actions">
                         <Iconify icon="ic:baseline-edit" />
@@ -74,7 +93,7 @@ export const StandorteTable = () => {
                     </TableCell>
                   </TableRow>
                   {activeRow === row.id ? (
-                    <TableRow className="active-row mobile-row-wrapper">
+                    <TableRow className="active-row">
                       <TableCell colSpan={3}>
                         <div className="cell-mobile-more">
                           {TABLE_HEAD?.filter((cell) => cell.className === 'mobile-cell')?.map(
@@ -118,5 +137,8 @@ const StyledStandorteTable = styled.div`
         opacity: 0.5;
       }
     }
+  }
+  .small-cell {
+    width: max-content;
   }
 `;

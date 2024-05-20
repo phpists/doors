@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useState, Fragment, useEffect } from 'react';
 
 import Table from '@mui/material/Table';
-import { Typography } from '@mui/material';
 import TableRow from '@mui/material/TableRow';
+import { Box, Typography } from '@mui/material';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
@@ -50,15 +50,15 @@ const TABLE_DATA: RowDataType[] = [
 ];
 
 const TABLE_HEAD = [
-  { id: 'type', label: 'Typ', align: 'left' },
-  { id: 'id', label: 'ID/Nummer', align: 'center', className: 'mobile-cell' },
-  { id: 'location', label: 'Anzahl Standorte', align: 'center', className: 'mobile-cell' },
-  { id: 'name', label: 'Name', align: 'center' },
-  { id: 'plz', label: 'PLZ', align: 'center', className: 'mobile-cell' },
-  { id: 'ort', label: 'Ort', align: 'center', className: 'mobile-cell' },
-  { id: 'tel', label: 'Telefon', align: 'center', className: 'mobile-cell' },
-  { id: 'devices', label: 'Anzahl Geräte', align: 'center', className: 'mobile-cell' },
-  { id: 'actions', label: 'Aktionen', align: 'center' },
+  { id: 'type', label: 'Typ' },
+  { id: 'id', label: 'ID/Nummer', className: 'mobile-cell' },
+  { id: 'location', label: 'Anzahl Standorte', className: 'mobile-cell' },
+  { id: 'name', label: 'Name' },
+  { id: 'plz', label: 'PLZ', className: 'mobile-cell' },
+  { id: 'ort', label: 'Ort', className: 'mobile-cell' },
+  { id: 'tel', label: 'Telefon', className: 'mobile-cell' },
+  { id: 'devices', label: 'Anzahl Geräte', className: 'mobile-cell' },
+  { id: 'actions', label: 'Aktionen' },
 ];
 
 export const ClientsTable = () => {
@@ -134,22 +134,42 @@ export const ClientsTable = () => {
                           icon={row?.type === 'building' ? 'ph:building' : 'ion:person-sharp'}
                         />
                       </TableCell>
-                      <TableCell onClick={() => table.onSelectRow(row.id)}> {row.id} </TableCell>
-                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
-                        {row.location}
-                      </TableCell>
-                      <TableCell onClick={() => table.onSelectRow(row.id)}> {row.name} </TableCell>
-                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
-                        {row.plz}
+                      <TableCell onClick={() => table.onSelectRow(row.id)}>
+                        {' '}
+                        <Box component="span" className="table-cell-text">
+                          {row.id}
+                        </Box>{' '}
                       </TableCell>
                       <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
-                        {row.ort}
+                        <Box component="span" className="table-cell-text">
+                          {row.location}
+                        </Box>{' '}
+                      </TableCell>
+                      <TableCell onClick={() => table.onSelectRow(row.id)}>
+                        {' '}
+                        <Box component="span" className="table-cell-text">
+                          {row.name}
+                        </Box>{' '}
                       </TableCell>
                       <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
-                        {row.tel}
+                        <Box component="span" className="table-cell-text">
+                          {row.plz}
+                        </Box>{' '}
                       </TableCell>
                       <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
-                        {row.devices}
+                        <Box component="span" className="table-cell-text">
+                          {row.ort}
+                        </Box>{' '}
+                      </TableCell>
+                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                        <Box component="span" className="table-cell-text">
+                          {row.tel}
+                        </Box>{' '}
+                      </TableCell>
+                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                        <Box component="span" className="table-cell-text">
+                          {row.devices}
+                        </Box>{' '}
                       </TableCell>
                       <TableCell>
                         <div className="row-actions">

@@ -5,11 +5,9 @@ import Table from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
-import { Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import TableContainer from '@mui/material/TableContainer';
 
-import alarmIcon from 'src/assets/icons/alarm.svg';
-import settingIcon from 'src/assets/icons/setting.svg';
 import { ConnectIcon } from 'src/assets/icons/solar-energy-one';
 import openIcon from 'src/assets/icons/reverse-operation-out.svg';
 
@@ -208,25 +206,49 @@ export const IntegrationsTable = () => {
                       key={row.id}
                       className={` row ${activeRow === row.id && 'active-row'}`}
                     >
-                      <TableCell>{row.name}</TableCell>
-                      <TableCell className="mobile-cell">{row.id}</TableCell>
-                      <TableCell>{row.type}</TableCell>
-                      <TableCell className="mobile-cell">{row.target}</TableCell>
-                      <TableCell className="mobile-cell">{row.ort}</TableCell>
+                      <TableCell>
+                        <Box component="span" className="table-cell-text">
+                          {row.name}
+                        </Box>{' '}
+                      </TableCell>
+                      <TableCell className="mobile-cell">
+                        <Box component="span" className="table-cell-text">
+                          {row.id}
+                        </Box>{' '}
+                      </TableCell>
+                      <TableCell>
+                        <Box component="span" className="table-cell-text">
+                          {row.type}
+                        </Box>{' '}
+                      </TableCell>
+                      <TableCell className="mobile-cell">
+                        <Box component="span" className="table-cell-text">
+                          {row.target}
+                        </Box>{' '}
+                      </TableCell>
+                      <TableCell className="mobile-cell">
+                        <Box component="span" className="table-cell-text">
+                          {row.ort}
+                        </Box>{' '}
+                      </TableCell>
                       <TableCell className="mobile-cell">
                         <div className="traffic-cell">
-                          <Typography color="blue"> 22K </Typography>
-                          <Typography color="red">
-                            <b>X</b> 0
-                          </Typography>
-                          <Typography color="gray"> 0</Typography>
+                          <Box component="span" color="blue">
+                            22k
+                          </Box>
+                          <Box component="span" color="red">
+                            X 0
+                          </Box>{' '}
+                          <Box component="span" color="gray">
+                            0
+                          </Box>
                         </div>
                       </TableCell>
                       <TableCell>
                         <div className="action-cell">
-                          <Typography color={row.status ? 'green' : 'black'}>
+                          <Box component="span" color={row.status ? 'green' : 'black'}>
                             {row.status ? 'Verbunden' : 'Bereit'}
-                          </Typography>
+                          </Box>
                           <button
                             type="button"
                             className="table-arrow-more"
@@ -243,14 +265,14 @@ export const IntegrationsTable = () => {
                             onClick={() => setManageDoorModal(true)}
                             className="icon-btn"
                           >
-                            <img src={settingIcon} alt="" />
+                            <Iconify icon="material-symbols:settings" />
                           </button>
                           <button
                             type="button"
                             onClick={() => setManageDoorTimeModal(true)}
                             className="icon-btn"
                           >
-                            <img src={alarmIcon} alt="" />
+                            <Iconify icon="lucide:clock-3" />
                           </button>
                           <img src={openIcon} alt="" />
                           <button
@@ -262,25 +284,13 @@ export const IntegrationsTable = () => {
                           >
                             <ConnectIcon active={row.id === 'LS-2330956'} />
                           </button>
-
-                          {row.id !== 'LS-2330956' ? (
-                            <Button
-                              size="small"
-                              color="warning"
-                              variant="contained"
-                              className="notConnectBtn"
-                              onClick={() =>
-                                setConnectDoorModal(
-                                  row.id === 'LS-2330956' ? 'active' : 'notActive'
-                                )
-                              }
-                            >
-                              Standort binden
-                            </Button>
-                          ) : null}
                         </div>
                       </TableCell>
-                      <TableCell className="mobile-cell">{row.onlineDate}</TableCell>
+                      <TableCell className="mobile-cell">
+                        <Box component="span" className="table-cell-text">
+                          {row.onlineDate}
+                        </Box>{' '}
+                      </TableCell>
                     </TableRow>
                     {activeRow === row.id ? (
                       <TableRow className="active-row mobile-row-wrapper">
@@ -302,14 +312,14 @@ export const IntegrationsTable = () => {
                                               onClick={() => setManageDoorModal(true)}
                                               className="icon-btn"
                                             >
-                                              <img src={settingIcon} alt="" />
+                                              <Iconify icon="material-symbols:settings" />
                                             </button>
                                             <button
                                               type="button"
                                               onClick={() => setManageDoorTimeModal(true)}
                                               className="icon-btn"
                                             >
-                                              <img src={alarmIcon} alt="" />
+                                              <Iconify icon="lucide:clock-3" />
                                             </button>
                                             <img src={openIcon} alt="" />
                                             <button
@@ -329,11 +339,15 @@ export const IntegrationsTable = () => {
                                       if (cell.id === 'traffic') {
                                         return (
                                           <div className="traffic-cell">
-                                            <Typography color="blue"> 22K </Typography>
-                                            <Typography color="red">
-                                              <b>X</b> 0
-                                            </Typography>
-                                            <Typography color="gray"> 0</Typography>
+                                            <Box component="span" color="blue">
+                                              22k
+                                            </Box>
+                                            <Box component="span" color="red">
+                                              X 0
+                                            </Box>{' '}
+                                            <Box component="span" color="gray">
+                                              0
+                                            </Box>
                                           </div>
                                         );
                                       }
@@ -372,12 +386,18 @@ const StyledIntegrationsTable = styled.div`
   .traffic-cell {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 5px;
+    width: max-content;
   }
   .action-cell {
     display: flex;
     align-items: center;
     gap: 10px;
+    img {
+      width: 20px;
+      height: 21px;
+      margin-bottom: 1px;
+    }
     .icon-btn {
       background: none;
       padding: none;
@@ -402,6 +422,7 @@ const StyledIntegrationsTable = styled.div`
       flex-shrink: 0;
       white-space: nowrap;
       font-size: 11px;
+      padding: 0;
     }
   }
   .pagination {

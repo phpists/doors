@@ -13,13 +13,15 @@ import { ColorSchema } from 'src/theme/palette';
 
 interface Props extends CardProps {
   title: string;
-  total: number;
+  subtitle?: string;
+  total?: number;
   icon: React.ReactNode;
   color?: ColorSchema;
 }
 
 export default function AnalyticsWidgetSummary({
   title,
+  subtitle,
   total,
   icon,
   color = 'primary',
@@ -48,7 +50,7 @@ export default function AnalyticsWidgetSummary({
     >
       {icon && <Box sx={{ width: 64, height: 64, mb: 1 }}>{icon}</Box>}
 
-      <Typography variant="h3">{fShortenNumber(total)}</Typography>
+      <Typography variant="h6">{subtitle ?? fShortenNumber(total ?? 0)}</Typography>
 
       <Typography variant="subtitle2" sx={{ opacity: 0.64 }}>
         {title}

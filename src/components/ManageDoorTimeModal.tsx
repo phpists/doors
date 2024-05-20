@@ -48,8 +48,8 @@ export const ManageDoorTimeModal = ({ open, onClose }: Props) => (
 
 const StyledManageDoorTimeModal = styled.div`
   width: 90svw;
-  max-width: 800px;
-  @media (max-width: 500px) {
+  max-width: 1000px;
+  @media (max-width: 600px) {
     width: 75svw;
   }
 `;

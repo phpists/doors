@@ -1,5 +1,12 @@
 export const ConnectIcon = ({ active }: { active: boolean }) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ width: 20, height: 20 }}
+  >
     <path
       d="M5 15H8C9.65685 15 11 16.3432 11 18C11 19.6568 9.65685 21 8 21H5V15Z"
       stroke={active ? '#74D33A' : '#FFA500'}

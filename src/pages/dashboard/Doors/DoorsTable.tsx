@@ -6,11 +6,10 @@ import Table from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
-import { Pagination, Typography } from '@mui/material';
 import TableContainer from '@mui/material/TableContainer';
+import { Box, Pagination, Typography } from '@mui/material';
 
 import { StatusIcon } from 'src/assets/icons/status';
-import settingIcon from 'src/assets/icons/setting.svg';
 import splitIcon from 'src/assets/icons/split-cells.svg';
 
 import Iconify from 'src/components/iconify';
@@ -188,46 +187,63 @@ export const DoorsTable = () => {
                       className={`row ${activeRow === row.id && 'active-row'}`}
                     >
                       <TableCell onClick={() => navigate('/dashboard/standorte/1')}>
-                        {row.location}
+                        <Box component="span" className="table-cell-text">
+                          {row.location}
+                        </Box>{' '}
                       </TableCell>
                       <TableCell onClick={() => navigate('/dashboard/standorte/1')}>
                         {row.id}
+                        <Box component="span" className="table-cell-text">
+                          {row.id}
+                        </Box>{' '}
                       </TableCell>
                       <TableCell
                         className="mobile-cell"
                         onClick={() => navigate('/dashboard/standorte/1')}
                       >
-                        {row.type}
+                        <Box component="span" className="table-cell-text">
+                          {row.type}
+                        </Box>{' '}
                       </TableCell>
                       <TableCell
                         className="mobile-cell"
                         onClick={() => navigate('/dashboard/standorte/1')}
                       >
-                        {row.name}
+                        <Box component="span" className="table-cell-text">
+                          {row.name}
+                        </Box>{' '}
                       </TableCell>
                       <TableCell
                         className="mobile-cell"
                         onClick={() => navigate('/dashboard/standorte/1')}
                       >
-                        {row.plz}
+                        <Box component="span" className="table-cell-text">
+                          {row.plz}
+                        </Box>{' '}
                       </TableCell>
                       <TableCell
                         className="mobile-cell"
                         onClick={() => navigate('/dashboard/standorte/1')}
                       >
-                        {row.ort}
+                        <Box component="span" className="table-cell-text">
+                          {row.ort}
+                        </Box>{' '}
                       </TableCell>
                       <TableCell
                         className="mobile-cell"
                         onClick={() => navigate('/dashboard/standorte/1')}
                       >
-                        {row.condition}
+                        <Box component="span" className="table-cell-text">
+                          {row.condition}
+                        </Box>{' '}
                       </TableCell>
                       <TableCell
                         className="mobile-cell"
                         onClick={() => navigate('/dashboard/standorte/1')}
                       >
-                        {row.battery}
+                        <Box component="span" className="table-cell-text">
+                          {row.battery}
+                        </Box>{' '}
                       </TableCell>
                       <TableCell>
                         <div className="actions-cell">
@@ -235,7 +251,7 @@ export const DoorsTable = () => {
                             <img src={splitIcon} alt="" />
                           </button>
                           <button type="button" onClick={() => setManageDoorTimeModal(true)}>
-                            <img src={settingIcon} alt="" />
+                            <Iconify icon="material-symbols:settings" />
                           </button>
                           <button
                             type="button"
@@ -300,7 +316,8 @@ const StyledDoorsTable = styled.div`
       color: #212b36;
       height: 17px;
     }
-    img {
+    img,
+    svg {
       cursor: pointer;
       transition: all 0.3s;
       &:hover {

@@ -33,6 +33,18 @@
   display: none !important;
 }
 
+@media (max-width: 1400px) {
+  .table-cell-text {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .table-cell-text {
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 900px) {
   .page-title {
     margin-left: 20px !important;
