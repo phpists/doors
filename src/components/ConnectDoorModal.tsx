@@ -132,4 +132,7 @@ const StyledConnectDoorModal = styled.div`
     display: grid;
     grid-template-columns: 100px 1fr;
   }
+  @media (max-width: 800px) {
+    width: 70svw;
+  }
 `;

@@ -4,12 +4,9 @@ import { useState, Fragment, useEffect } from 'react';
 
 import Table from '@mui/material/Table';
 import { Typography } from '@mui/material';
-import Tooltip from '@mui/material/Tooltip';
 import TableRow from '@mui/material/TableRow';
-import Checkbox from '@mui/material/Checkbox';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
-import IconButton from '@mui/material/IconButton';
 import TableContainer from '@mui/material/TableContainer';
 
 import Iconify from 'src/components/iconify';
@@ -20,16 +17,15 @@ import {
   getComparator,
   TableEmptyRows,
   TableHeadCustom,
-  TableSelectedAction,
 } from 'src/components/table';
 
 type RowDataType = {
   type: string;
-  id: number;
+  id: string;
   location: string;
   name: string;
   plz: number;
-  ort: number;
+  ort: string;
   tel: string;
   devices: number;
 };
@@ -43,11 +39,11 @@ function createData(
   ort: string,
   tel: string,
   devices: number
-) {
+): RowDataType {
   return { type, id, location, name, plz, ort, tel, devices };
 }
 
-const TABLE_DATA = [
+const TABLE_DATA: RowDataType[] = [
   createData('building', '125277', '3', 'Migros AG', 8025, 'Zürich', '+79 978 56 72', 20),
   createData('test', '125272', '3', 'Migros AG', 8015, 'Zürich', '+79 978 56 72', 22),
   createData('test', '125273', '3', 'Migros AG', 8005, 'Zürich', '+79 978 56 72', 25),
@@ -109,25 +105,6 @@ export const ClientsTable = () => {
   return (
     <StyledClientsTable>
       <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
-        <TableSelectedAction
-          dense={table.dense}
-          numSelected={table.selected.length}
-          rowCount={dataFiltered.length}
-          onSelectAllRows={(checked) =>
-            table.onSelectAllRows(
-              checked,
-              dataFiltered.map((row) => row.name)
-            )
-          }
-          action={
-            <Tooltip title="Delete">
-              <IconButton color="primary">
-                <Iconify icon="solar:trash-bin-trash-bold" />
-              </IconButton>
-            </Tooltip>
-          }
-        />
-
         <Scrollbar>
           <Table size={table.dense ? 'small' : 'medium'}>
             <TableHeadCustom
@@ -137,12 +114,6 @@ export const ClientsTable = () => {
               rowCount={dataFiltered.length}
               numSelected={table.selected.length}
               onSort={table.onSort}
-              onSelectAllRows={(checked) =>
-                table.onSelectAllRows(
-                  checked,
-                  dataFiltered.map((row) => row.id)
-                )
-              }
             />
 
             <TableBody>
@@ -158,9 +129,6 @@ export const ClientsTable = () => {
                       selected={table.selected.includes(row.id)}
                       className={`${activeRow === row.id && 'active-row'}`}
                     >
-                      <TableCell padding="checkbox" onClick={() => table.onSelectRow(row.id)}>
-                        <Checkbox checked={table.selected.includes(row.name)} />
-                      </TableCell>
                       <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
                         <Iconify
                           icon={row?.type === 'building' ? 'ph:building' : 'ion:person-sharp'}
@@ -200,7 +168,7 @@ export const ClientsTable = () => {
                       </TableCell>
                     </TableRow>
                     {activeRow === row.id ? (
-                      <TableRow className="active-row">
+                      <TableRow className="active-row mobile-row-wrapper">
                         <TableCell />
                         <TableCell colSpan={5}>
                           <div className="cell-mobile-more">

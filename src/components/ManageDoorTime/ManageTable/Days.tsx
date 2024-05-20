@@ -38,4 +38,9 @@ const StyledDays = styled.div`
       color: #212b36;
     }
   }
+  @media (max-width: 500px) {
+    p {
+      font-size: 12px;
+    }
+  }
 `;

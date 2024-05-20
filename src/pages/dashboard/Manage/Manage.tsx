@@ -16,9 +16,6 @@ const Manage = () => {
   const [activeTab, setActiveTab] = useState(0);
   return (
     <StyledManage>
-      <Typography variant="h4" className="page-title">
-        Geräteansicht
-      </Typography>
       <Tabs value={activeTab} onChange={(e, tab) => setActiveTab(tab)} className="tabs-wrapper">
         {TABS.map((tab) => (
           <Tab key={tab.value} value={tab.value} label={tab.label} />

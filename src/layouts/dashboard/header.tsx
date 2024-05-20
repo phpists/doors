@@ -1,5 +1,8 @@
+import { useLocation } from 'react-router';
+
 import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
+import { Typography } from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
@@ -20,9 +23,19 @@ import AccountPopover from '../common/account-popover';
 
 type Props = {
   onOpenNav?: VoidFunction;
+  small?: boolean;
 };
 
-export default function Header({ onOpenNav }: Props) {
+const PAGES_TITLE = [
+  { path: '/dashboard', title: 'Kundenansicht' },
+  { path: '/dashboard/client', title: 'Kundenansicht' },
+  { path: '/dashboard/standorte', title: 'Standorte & Überwachung' },
+  { path: '/dashboard/standorte', title: 'Standorte & Überwachung' },
+  { path: '/management', title: 'Geräteansicht' },
+];
+
+export default function Header({ onOpenNav, small }: Props) {
+  const { pathname } = useLocation();
   const theme = useTheme();
 
   const settings = useSettingsContext();
@@ -39,13 +52,18 @@ export default function Header({ onOpenNav }: Props) {
 
   const renderContent = (
     <>
-      {lgUp && isNavHorizontal && <Logo sx={{ mr: 2.5 }} />}
+      {lgUp && isNavHorizontal && <Logo sx={{ mr: 2.5 }} small={small} />}
 
       {!lgUp && (
         <IconButton onClick={onOpenNav}>
           <SvgColor src="/assets/icons/navbar/ic_menu_item.svg" />
         </IconButton>
       )}
+
+      <Typography variant="h4" className="page-title">
+        {PAGES_TITLE?.find(({ path }) => path === pathname.split('/')?.slice(0, 3)?.join('/'))
+          ?.title ?? ''}
+      </Typography>
 
       {/* <Searchbar /> */}
 

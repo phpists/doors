@@ -21,15 +21,12 @@ import { SettingsDrawer, SettingsProvider } from 'src/components/settings';
 import { CheckoutProvider } from 'src/sections/checkout/context';
 
 import { AuthProvider } from 'src/auth/context/jwt';
-import { Route, Routes } from 'react-router';
-import { lazy } from 'react';
 // import { AuthProvider } from 'src/auth/context/auth0';
 // import { AuthProvider } from 'src/auth/context/amplify';
 // import { AuthProvider } from 'src/auth/context/firebase';
 // import { AuthProvider } from 'src/auth/context/supabase';
 
 // ----------------------------------------------------------------------
-
 
 export default function App() {
   const charAt = `
@@ -53,7 +50,7 @@ export default function App() {
           defaultSettings={{
             themeMode: 'light', // 'light' | 'dark'
             themeDirection: 'ltr', //  'rtl' | 'ltr'
-            themeContrast: 'default', // 'default' | 'bold'
+            themeContrast: 'bold', // 'default' | 'bold'
             themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini'
             themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
             themeStretch: false,

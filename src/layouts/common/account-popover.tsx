@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { m } from 'framer-motion';
 
 import Box from '@mui/material/Box';
@@ -17,6 +18,7 @@ import { useAuthContext } from 'src/auth/hooks';
 
 import { varHover } from 'src/components/animate';
 import { useSnackbar } from 'src/components/snackbar';
+import { ProfileInfoModal } from 'src/components/ProfileInfoModal';
 import CustomPopover, { usePopover } from 'src/components/custom-popover';
 
 // ----------------------------------------------------------------------
@@ -40,6 +42,7 @@ const OPTIONS = [
 
 export default function AccountPopover() {
   const router = useRouter();
+  const [profileInfo, setOpenProfileInfo] = useState(false);
 
   const { user } = useMockedUser();
 
@@ -60,6 +63,11 @@ export default function AccountPopover() {
     }
   };
 
+  const handleToggleProfileInfoModal = (val: boolean) => {
+    setOpenProfileInfo(val);
+    popover.onClose();
+  };
+
   const handleClickItem = (path: string) => {
     popover.onClose();
     router.push(path);
@@ -67,6 +75,7 @@ export default function AccountPopover() {
 
   return (
     <>
+      <ProfileInfoModal open={profileInfo} onClose={() => handleToggleProfileInfoModal(false)} />
       <IconButton
         component={m.button}
         whileTap="tap"
@@ -103,7 +112,7 @@ export default function AccountPopover() {
           </Typography>
 
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {user?.email}
+            {user?.role}
           </Typography>
         </Box>
 
@@ -118,7 +127,12 @@ export default function AccountPopover() {
         </Stack>
 
         <Divider sx={{ borderStyle: 'dashed' }} /> */}
-
+        <MenuItem
+          onClick={() => handleToggleProfileInfoModal(true)}
+          sx={{ m: 1, fontWeight: 'fontWeightBold' }}
+        >
+          Profileübersicht
+        </MenuItem>
         <MenuItem
           onClick={handleLogout}
           sx={{ m: 1, fontWeight: 'fontWeightBold', color: 'error.main' }}

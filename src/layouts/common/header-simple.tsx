@@ -41,7 +41,7 @@ export default function HeaderSimple() {
           }),
         }}
       >
-        <Logo />
+        <Logo style={{ width: 100 }} />
 
         {/* <Stack direction="row" alignItems="center" spacing={1}>
           <SettingsButton />

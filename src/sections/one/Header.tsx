@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 
 import Iconify from 'src/components/iconify';
 
-import { NewContactModal } from './NewContactModal/NewContactModal';
+import { NewContactModal } from '../../components/NewContactModal/NewContactModal';
 
 export const Header = () => {
   const [newContactModal, setNewContactModal] = useState(false);

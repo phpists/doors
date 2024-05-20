@@ -7,9 +7,6 @@ import { DoorsTable } from './DoorsTable';
 
 const Doors = () => (
   <StyledDoors>
-    <Typography variant="h4" className="page-title">
-      Standorte & Überwachung
-    </Typography>
     <Header />
     <DoorsTable />
   </StyledDoors>

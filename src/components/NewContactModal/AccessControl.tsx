@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
-import { Checkbox, MenuItem, TextField, Typography, FormControlLabel } from '@mui/material';
+import {
+  Divider,
+  Checkbox,
+  MenuItem,
+  TextField,
+  Typography,
+  FormControlLabel,
+} from '@mui/material';
 
 export const AccessControl = () => (
   <StyledAccessControl>
@@ -18,12 +25,13 @@ export const AccessControl = () => (
         sx={{ textTransform: 'capitalize' }}
       />
       <Typography variant="body2" sx={{ color: `text.secondary` }} className="text-info">
-        Wenn das Kontrollkästchen "Webzugriff erlauben" aktiviert ist, können Kunden sich über
-        erstellte Konten anmelden. Für jeden Standort müssen Sie einen separaten Zugang erstellen.
-        Sie können einen neuen Standort hinzufügen oder entfernen, indem Sie rechts auf die
-        Schaltfläche "Standort hinzufügen" klicken.
+        Wenn das Kontrollkästchen {`"`}Webzugriff erlauben{`"`} aktiviert ist, können Kunden sich
+        über erstellte Konten anmelden. Für jeden Standort müssen Sie einen separaten Zugang
+        erstellen. Sie können einen neuen Standort hinzufügen oder entfernen, indem Sie rechts auf
+        die Schaltfläche {`"`}Standort hinzufügen{`"`} klicken.
       </Typography>
     </div>
+    <Divider orientation="vertical" className="divider" />
     <div className="column-wrapper">
       <Typography variant="subtitle1" className="title">
         Gerätezugriffskontrolle
@@ -57,14 +65,15 @@ export const AccessControl = () => (
 
 const StyledAccessControl = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr max-content 1fr;
+  gap: 30px;
   .column-wrapper {
     display: flex;
     flex-direction: column;
   }
   .text-info {
     padding-left: 30px;
+    font-size: 12px;
   }
   .title {
     margin-bottom: 20px;
@@ -74,5 +83,11 @@ const StyledAccessControl = styled.div`
   }
   @media (max-width: 1100px) {
     grid-template-columns: 1fr;
+    gap: 20px;
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(145, 158, 171, 0.2);
+    }
   }
 `;

@@ -19,10 +19,6 @@
 @import 'yet-another-react-lightbox/plugins/captions.css';
 @import 'yet-another-react-lightbox/plugins/thumbnails.css';
 
-.page-title {
-  margin-bottom: 20px !important;
-}
-
 .cell-mobile-more {
   display: grid;
   grid-template-columns: max-content 1fr;
@@ -33,7 +29,14 @@
   display: none;
 }
 
+.mobile-row-wrapper {
+  display: none !important;
+}
+
 @media (max-width: 900px) {
+  .page-title {
+    margin-left: 20px !important;
+  }
   .mobile-cell {
     display: none !important;
   }
@@ -50,4 +53,25 @@
   .active-row .table-arrow-more {
     transform: rotate(180deg);
   }
+  .mobile-row-wrapper {
+    display: table-row !important;
+  }
+}
+
+table {
+  background: #fff !important;
+  border-radius: 10px;
+}
+
+.auth-wrapper {
+  display: grid !important;
+  grid-template-columns: 50% 50% !important;
+}
+
+.auth-wrapper-content {
+  justify-self: start;
+}
+
+.MuiDialogTitle-root {
+  text-align: center;
 }

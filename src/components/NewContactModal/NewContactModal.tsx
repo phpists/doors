@@ -32,31 +32,38 @@ export const NewContactModal = ({ open, onClose }: Props) => {
   const [currentTab, setCurrentTab] = useState(0);
 
   return (
-    <StyledNewContactModal>
-      {' '}
-      <Dialog open={open} onClose={onClose} maxWidth={1000}>
-        <DialogTitle>Neuer Kontakt</DialogTitle>
+    <Dialog open={open} onClose={onClose} maxWidth="lg">
+      <DialogTitle>Neuer Kontakt</DialogTitle>
 
-        <DialogContent style={{ width: '90svw', maxWidth: 1000 }}>
-          <Tabs value={currentTab} onChange={(e, tab) => setCurrentTab(tab)}>
+      <DialogContent style={{ width: '90svw', maxWidth: 1000 }}>
+        <StyledNewContactModal>
+          <Tabs
+            value={currentTab}
+            onChange={(e, tab) => setCurrentTab(tab)}
+            className="tabs-wrapper"
+          >
             {TABS.slice(0, 3).map((tab) => (
               <Tab key={tab.value} value={tab.value} label={tab.label} />
             ))}
           </Tabs>
           {currentTab === 0 ? <Allgemein /> : <AccessControl />}
-        </DialogContent>
+        </StyledNewContactModal>
+      </DialogContent>
 
-        <DialogActions>
-          <Button onClick={onClose} variant="outlined" color="inherit">
-            Abbrechen
-          </Button>
-          <Button onClick={onClose} variant="contained">
-            Hinzufügen
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </StyledNewContactModal>
+      <DialogActions>
+        <Button onClick={onClose} variant="outlined" color="inherit">
+          Abbrechen
+        </Button>
+        <Button onClick={onClose} variant="contained">
+          Hinzufügen
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 
-const StyledNewContactModal = styled.div``;
+const StyledNewContactModal = styled.div`
+  .tabs-wrapper {
+    margin-bottom: 10px;
+  }
+`;

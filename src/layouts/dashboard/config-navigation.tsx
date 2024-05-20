@@ -63,19 +63,16 @@ export function useNavData() {
 
           // PRODUCT
           {
-            title: 'Geräteansicht',
+            title: 'Geräteverwaltung',
             path: '/management',
             icon: ICONS.lock,
-          },
-          {
-            title: 'Profileübersicht',
-            path: `?profileModal=true`,
-            icon: ICONS.menuItem,
+            children: [{ title: 'Geräteansicht', path: '/management' }],
           },
         ],
       },
     ],
-    [t]
+    // @ts-ignore
+    []
   );
 
   return data;

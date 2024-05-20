@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const ManageDoorTimeModal = ({ open, onClose }: Props) => (
-  <Dialog open={open} onClose={onClose} maxWidth={800}>
+  <Dialog open={open} onClose={onClose} maxWidth="lg">
     <DialogTitle>
       Gerätezeitsteuerung{' '}
       <Typography fontSize={12} className="flex">
@@ -28,7 +28,7 @@ export const ManageDoorTimeModal = ({ open, onClose }: Props) => (
       </Typography>
     </DialogTitle>
 
-    <DialogContent sx={{ color: 'text.secondary' }}>
+    <DialogContent sx={{ color: 'text.secondary' }} style={{ padding: 10 }}>
       <StyledManageDoorTimeModal>
         <Typography color="gray">Zeitschaltung</Typography>
         <ManageDoorTime />
@@ -47,6 +47,9 @@ export const ManageDoorTimeModal = ({ open, onClose }: Props) => (
 );
 
 const StyledManageDoorTimeModal = styled.div`
-  width: 95svw;
+  width: 90svw;
   max-width: 800px;
+  @media (max-width: 500px) {
+    width: 75svw;
+  }
 `;

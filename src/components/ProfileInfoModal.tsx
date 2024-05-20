@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { useLocation } from 'react-router';
-import { useState, useEffect } from 'react';
 
 import {
   Button,
@@ -11,73 +9,67 @@ import {
   DialogContent,
 } from '@mui/material';
 
-export const ProfileInfoModal = () => {
-  const { search } = useLocation();
-  const [open, setOpen] = useState(false);
+interface Props {
+  open: boolean;
+  onClose: () => void;
+}
 
-  const handleClose = () => setOpen(false);
+export const ProfileInfoModal = ({ open, onClose }: Props) => (
+  <Dialog open={open} onClose={onClose}>
+    <DialogTitle>Profileübersicht</DialogTitle>
 
-  useEffect(() => {
-    setOpen(search === '?profileModal=true');
-  }, [search]);
-
-  return (
-    <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>Profileübersicht</DialogTitle>
-
-      <DialogContent sx={{ color: 'text.secondary' }}>
-        <StyledProfileInfoModal>
-          <div className="footer-form">
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Geräte Name
+    <DialogContent sx={{ color: 'text.secondary' }}>
+      <StyledProfileInfoModal>
+        <div className="footer-form">
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            Geräte Name
+          </Typography>
+          <Typography variant="body2" fontWeight={600}>
+            Sensor
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            Geräte ID
+          </Typography>
+          <Typography variant="body2" fontWeight={600}>
+            LS-2330956
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            Gerätetyp
+          </Typography>
+          <Typography variant="body2" fontWeight={600}>
+            Tor
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            Target
+          </Typography>
+          <Typography variant="body2" fontWeight={600}>
+            migros.tstgmbh.ch
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            Ziel Ort
+          </Typography>
+          <div>
+            <Typography variant="body2" fontWeight={600}>
+              Hausimollstrasse 1
             </Typography>
             <Typography variant="body2" fontWeight={600}>
-              Sensor
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Geräte ID
+              4622 Egerkingen
             </Typography>
             <Typography variant="body2" fontWeight={600}>
-              LS-2330956
+              Schweiz
             </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Gerätetyp
-            </Typography>
-            <Typography variant="body2" fontWeight={600}>
-              Tor
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Target
-            </Typography>
-            <Typography variant="body2" fontWeight={600}>
-              migros.tstgmbh.ch
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              Ziel Ort
-            </Typography>
-            <div>
-              <Typography variant="body2" fontWeight={600}>
-                Hausimollstrasse 1
-              </Typography>
-              <Typography variant="body2" fontWeight={600}>
-                4622 Egerkingen
-              </Typography>
-              <Typography variant="body2" fontWeight={600}>
-                Schweiz
-              </Typography>
-            </div>
           </div>
-        </StyledProfileInfoModal>
-      </DialogContent>
+        </div>
+      </StyledProfileInfoModal>
+    </DialogContent>
 
-      <DialogActions>
-        <Button variant="contained" onClick={handleClose} autoFocus>
-          Schließen
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
-};
+    <DialogActions>
+      <Button variant="contained" onClick={onClose} autoFocus>
+        Schließen
+      </Button>
+    </DialogActions>
+  </Dialog>
+);
 
 const StyledProfileInfoModal = styled.div`
   width: 100svw;

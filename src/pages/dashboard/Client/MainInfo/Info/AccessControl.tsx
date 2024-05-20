@@ -5,10 +5,10 @@ import { Checkbox, MenuItem, TextField, Typography, FormControlLabel } from '@mu
 export const AccessControl = () => (
   <StyledAccessControl>
     <Typography variant="body2" sx={{ color: `text.secondary` }}>
-      Wenn das Kontrollkästchen "Webzugriff erlauben" aktiviert ist, können Kunden sich über
+      Wenn das Kontrollkästchen {`"`}Webzugriff erlauben{`"`} aktiviert ist, können Kunden sich über
       erstellte Konten anmelden. Für jeden Standort müssen Sie einen separaten Zugang erstellen. Sie
       können einen neuen Standort hinzufügen oder entfernen, indem Sie rechts auf die Schaltfläche
-      "Standort hinzufügen" klicken.
+      {`"`}Standort hinzufügen{`"`} klicken.
     </Typography>
     <FormControlLabel
       value="default"

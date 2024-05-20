@@ -67,6 +67,9 @@ export default function AuthClassicLayout({ children, image, title }: Props) {
         position: 'absolute',
         m: { xs: 2, md: 5 },
       }}
+      style={{
+        width: 150,
+      }}
     />
   );
 
@@ -127,12 +130,11 @@ export default function AuthClassicLayout({ children, image, title }: Props) {
       sx={{
         minHeight: '100vh',
       }}
+      className="auth-wrapper"
     >
       {renderLogo}
-
       {mdUp && renderSection}
-
-      {renderContent}
+      <div className="auth-wrapper-content">{renderContent}</div>
     </Stack>
   );
 }

@@ -251,7 +251,7 @@ export const DoorsTable = () => {
                       </TableCell>
                     </TableRow>
                     {activeRow === row.id ? (
-                      <TableRow className="active-row">
+                      <TableRow className="active-row mobile-row-wrapper">
                         <TableCell colSpan={5}>
                           <div className="cell-mobile-more">
                             {TABLE_HEAD?.filter((cell) => cell.className === 'mobile-cell')?.map(

@@ -14,11 +14,18 @@ import { TableHeadCustom } from 'src/components/table';
 
 // ----------------------------------------------------------------------
 
+type RowType = {
+  id: number;
+  title: string;
+  address: string;
+  count: number;
+};
+
 function createData(id: number, title: string, address: string, count: number) {
   return { id, title, address, count };
 }
 
-const TABLE_DATA = [
+const TABLE_DATA: RowType[] = [
   createData(1, 'Gäupark', 'Hausimollstrasse 1, 4622 Egerkingen', 14),
   createData(2, 'M- Oensingen', 'Hausimollstrasse 1, 4622 Egerkingen', 4),
   createData(3, 'Gäupark', 'Hausimollstrasse 1, 4622 Egerkingen', 24),
@@ -67,7 +74,7 @@ export const StandorteTable = () => {
                     </TableCell>
                   </TableRow>
                   {activeRow === row.id ? (
-                    <TableRow className="active-row">
+                    <TableRow className="active-row mobile-row-wrapper">
                       <TableCell colSpan={3}>
                         <div className="cell-mobile-more">
                           {TABLE_HEAD?.filter((cell) => cell.className === 'mobile-cell')?.map(
@@ -77,7 +84,7 @@ export const StandorteTable = () => {
                                   {cell.label}
                                 </Typography>
                                 <Typography variant="body2" fontWeight={600}>
-                                  {row[cell.id]}
+                                  {row[cell.id as keyof RowType]}
                                 </Typography>
                               </Fragment>
                             )

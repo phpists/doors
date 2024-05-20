@@ -1,25 +1,32 @@
 import styled from '@emotion/styled';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-import Iconify from 'src/components/iconify';
+import { Typography, Breadcrumbs } from '@mui/material';
 
-export const BackButton = () => {
-  const navigate = useNavigate();
-
-  return (
-    <StyledBackButton onClick={() => navigate(-1)}>
-      <Iconify icon="tabler:arrow-left" />
-      Zurück zu den Standorte & Überwachung
-    </StyledBackButton>
-  );
-};
+export const BackButton = () => (
+  <StyledBackButton>
+    <Breadcrumbs>
+      <NavLink color="inherit" to="/dashboard/standorte">
+        Standorte & Überwachung
+      </NavLink>
+      <Typography sx={{ color: 'text.primary' }}>Migros AG</Typography>
+    </Breadcrumbs>{' '}
+  </StyledBackButton>
+);
 
 const StyledBackButton = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 40px;
-  gap: 5px;
-  color: #212b36;
-  text-decoration: none;
-  cursor: pointer;
+  margin-bottom: 20px;
+  a {
+    line-height: 1.5714285714285714;
+    font-size: 0.875rem;
+    font-family:
+      Public Sans,
+      sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+    color: #637381;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;

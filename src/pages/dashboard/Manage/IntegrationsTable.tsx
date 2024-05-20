@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router';
 import { useState, Fragment, useEffect } from 'react';
 
 import Table from '@mui/material/Table';
@@ -132,7 +131,6 @@ export const IntegrationsTable = () => {
   const table = useTable({
     defaultOrderBy: 'calories',
   });
-  const navigate = useNavigate();
 
   const [tableData, setTableData] = useState<RowDataType[]>([]);
   const [manageDoorModal, setManageDoorModal] = useState(false);
@@ -285,7 +283,7 @@ export const IntegrationsTable = () => {
                       <TableCell className="mobile-cell">{row.onlineDate}</TableCell>
                     </TableRow>
                     {activeRow === row.id ? (
-                      <TableRow className="active-row">
+                      <TableRow className="active-row mobile-row-wrapper">
                         <TableCell colSpan={6}>
                           <div className="cell-mobile-more">
                             {TABLE_HEAD?.filter((cell) => cell.className === 'mobile-cell')?.map(
@@ -420,6 +418,9 @@ const StyledIntegrationsTable = styled.div`
       p {
         font-size: 13px !important;
       }
+    }
+    .action-cell {
+      justify-content: flex-end;
     }
   }
   .table-arrow-more {

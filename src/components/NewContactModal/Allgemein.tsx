@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Radio, MenuItem, TextField, FormControlLabel } from '@mui/material';
+import { Radio, Divider, MenuItem, TextField, FormControlLabel } from '@mui/material';
 
 export const Allgemein = () => (
   <StyledAllgemein>
@@ -41,10 +41,11 @@ export const Allgemein = () => (
           <MenuItem value="(СН 1)">(СН)</MenuItem>
           <MenuItem value="(СН 2)">(СН)</MenuItem>
         </TextField>
-        <TextField variant="outlined" required label="PLZ" />
-        <TextField variant="outlined" required fullWidth label="Ort" />
+        <TextField variant="outlined" required label="PLZ" className="field" />
+        <TextField variant="outlined" required fullWidth label="Ort" className="field" />
       </div>
     </div>
+    <Divider orientation="vertical" className="divider" />
     <div className="fileds-list">
       <div className="field-group">
         <TextField variant="outlined" fullWidth label="Telephone 1" className="field" />
@@ -68,7 +69,7 @@ export const Allgemein = () => (
 
 const StyledAllgemein = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr max-content 1fr;
   gap: 30px;
   .fileds-list {
     display: grid;
@@ -108,6 +109,7 @@ const StyledAllgemein = styled.div`
   }
   @media (max-width: 1100px) {
     grid-template-columns: 1fr;
+    gap: 10px;
     .field-group {
       flex-direction: column;
       gap: 10px;
@@ -122,6 +124,9 @@ const StyledAllgemein = styled.div`
       .id-number {
         width: 100%;
       }
+    }
+    .divider {
+      display: none;
     }
   }
 `;

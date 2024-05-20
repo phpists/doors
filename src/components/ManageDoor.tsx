@@ -6,76 +6,62 @@ import { Button } from '@mui/material';
 import { SplitIcon } from 'src/assets/icons/split';
 
 export const ManageDoor = () => {
-  const [active, setActive] = useState<string[]>([]);
+  const [active, setActive] = useState<string | null>(null);
 
   return (
     <StyledManageDoor>
       <div className="buttons">
         <Button
           variant="contained"
-          color={active?.includes('1') ? 'success' : undefined}
-          onClick={() =>
-            setActive(active?.includes('1') ? active?.filter((b) => b !== '1') : [...active, '1'])
-          }
+          color={active === '1' ? 'success' : undefined}
+          onClick={() => setActive(active === '1' ? null : '1')}
         >
           Automat
         </Button>
         <Button
           variant="contained"
-          color={active?.includes('2') ? 'success' : undefined}
-          onClick={() =>
-            setActive(active?.includes('2') ? active?.filter((b) => b !== '2') : [...active, '2'])
-          }
+          color={active === '2' ? 'success' : undefined}
+          onClick={() => setActive(active === '2' ? null : '2')}
         >
           Automat-Reduziert
         </Button>
         <Button
           variant="contained"
-          color={active?.includes('3') ? 'success' : undefined}
-          onClick={() =>
-            setActive(active?.includes('3') ? active?.filter((b) => b !== '3') : [...active, '3'])
-          }
+          color={active === '3' ? 'success' : undefined}
+          onClick={() => setActive(active === '3' ? null : '3')}
         >
           Dauerauf
         </Button>
         <Button
           variant="contained"
-          color={active?.includes('4') ? 'success' : undefined}
-          onClick={() =>
-            setActive(active?.includes('4') ? active?.filter((b) => b !== '4') : [...active, '4'])
-          }
+          color={active === '4' ? 'success' : undefined}
+          onClick={() => setActive(active === '4' ? null : '4')}
         >
           Nacht
         </Button>
         <Button
           variant="contained"
-          color={active?.includes('5') ? 'success' : undefined}
-          onClick={() =>
-            setActive(active?.includes('5') ? active?.filter((b) => b !== '5') : [...active, '5'])
-          }
+          color={active === '5' ? 'success' : undefined}
+          onClick={() => setActive(active === '5' ? null : '5')}
         >
           Ausgang
         </Button>
         <Button
           variant="contained"
-          color={active?.includes('6') ? 'success' : undefined}
-          onClick={() =>
-            setActive(active?.includes('6') ? active?.filter((b) => b !== '6') : [...active, '6'])
-          }
+          color={active === '6' ? 'success' : undefined}
+          onClick={() => setActive(active === '6' ? null : '6')}
         >
           Manuell
         </Button>
       </div>
       <Button
         variant="contained"
-        color={active?.includes('7') ? 'error' : 'info'}
-        onClick={() =>
-          setActive(active?.includes('7') ? active?.filter((b) => b !== '7') : [...active, '7'])
-        }
+        onClick={() => setActive(active === '7' ? null : '7')}
         className="open-btn"
+        color="info"
       >
         <SplitIcon />
-        {active?.includes('7') ? 'Öffnen' : 'Geschlossen'}
+        Öffnen
       </Button>
     </StyledManageDoor>
   );
