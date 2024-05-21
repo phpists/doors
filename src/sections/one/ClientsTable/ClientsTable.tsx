@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-import { useState, Fragment, useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import React, { useState, Fragment, useEffect } from 'react';
 
 import Table from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
@@ -62,6 +62,7 @@ const TABLE_HEAD = [
 ];
 
 export const ClientsTable = () => {
+  const navigate = useNavigate();
   const table = useTable({
     defaultOrderBy: 'calories',
   });
@@ -126,47 +127,49 @@ export const ClientsTable = () => {
                   <Fragment key={row.id}>
                     <TableRow
                       hover
-                      selected={table.selected.includes(row.id)}
                       className={`${activeRow === row.id && 'active-row'}`}
+                      onClick={(e: React.MouseEvent<HTMLElement>) =>
+                        e.detail === 2 && navigate('/dashboard/client/1')
+                      }
                     >
-                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                      <TableCell className="mobile-cell">
                         <Iconify
                           icon={row?.type === 'building' ? 'ph:building' : 'ion:person-sharp'}
                         />
                       </TableCell>
-                      <TableCell onClick={() => table.onSelectRow(row.id)}>
+                      <TableCell>
                         {' '}
                         <Box component="span" className="table-cell-text">
                           {row.id}
                         </Box>{' '}
                       </TableCell>
-                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                      <TableCell className="mobile-cell">
                         <Box component="span" className="table-cell-text">
                           {row.location}
                         </Box>{' '}
                       </TableCell>
-                      <TableCell onClick={() => table.onSelectRow(row.id)}>
+                      <TableCell>
                         {' '}
                         <Box component="span" className="table-cell-text">
                           {row.name}
                         </Box>{' '}
                       </TableCell>
-                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                      <TableCell className="mobile-cell">
                         <Box component="span" className="table-cell-text">
                           {row.plz}
                         </Box>{' '}
                       </TableCell>
-                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                      <TableCell className="mobile-cell">
                         <Box component="span" className="table-cell-text">
                           {row.ort}
                         </Box>{' '}
                       </TableCell>
-                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                      <TableCell className="mobile-cell">
                         <Box component="span" className="table-cell-text">
                           {row.tel}
                         </Box>{' '}
                       </TableCell>
-                      <TableCell className="mobile-cell" onClick={() => table.onSelectRow(row.id)}>
+                      <TableCell className="mobile-cell">
                         <Box component="span" className="table-cell-text">
                           {row.devices}
                         </Box>{' '}
@@ -224,6 +227,7 @@ export const ClientsTable = () => {
 };
 
 const StyledClientsTable = styled.div`
+  width: 100%;
   .row-actions {
     display: flex;
     align-items: center;

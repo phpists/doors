@@ -1,71 +1,104 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import { Radio, Divider, MenuItem, TextField, FormControlLabel } from '@mui/material';
 
-export const Allgemein = () => (
-  <StyledAllgemein>
-    <div className="fileds-list">
-      <div className="header">
-        <div className="radio-btns">
-          <FormControlLabel
-            value="default"
-            control={<Radio size="medium" color="default" />}
-            label="Firma"
-            sx={{ textTransform: 'capitalize' }}
-          />
-          <FormControlLabel
-            value="default"
-            control={<Radio size="medium" color="default" />}
-            label="Privat"
-            sx={{ textTransform: 'capitalize' }}
-          />
+export const Allgemein = () => {
+  const [type, setType] = useState(1);
+
+  return (
+    <StyledAllgemein>
+      <div className="fileds-list">
+        <div className="header">
+          <div className="radio-btns">
+            <FormControlLabel
+              value="default"
+              control={<Radio size="medium" color="default" checked={type === 1} />}
+              label="Firma"
+              sx={{ textTransform: 'capitalize' }}
+              onClick={() => setType(1)}
+            />
+            <FormControlLabel
+              value="default"
+              control={<Radio size="medium" color="default" checked={type === 2} />}
+              label="Privat"
+              sx={{ textTransform: 'capitalize' }}
+              onClick={() => setType(2)}
+            />
+          </div>
+          <div className="id-number">ID/Kundennummer: 0253656</div>
         </div>
-        <div className="id-number">ID/Kundennummer: 0253656</div>
+        <div className="field-group">
+          <TextField variant="outlined" required fullWidth label="Suchname" className="field" />
+          {type === 2 ? (
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              label="Anrede"
+              className="field"
+              value="Herr"
+              select
+            >
+              <MenuItem value="Herr">Herr</MenuItem>
+              <MenuItem value="Frau">Frau</MenuItem>
+            </TextField>
+          ) : null}
+        </div>
+        <div className="field-group">
+          <TextField
+            variant="outlined"
+            fullWidth
+            label={type === 1 ? 'Firma' : 'Name'}
+            className="field"
+          />
+          {type === 2 ? (
+            <TextField variant="outlined" required fullWidth label="Vorname" className="field" />
+          ) : null}
+        </div>
+        <div className="field-group">
+          <TextField variant="outlined" required fullWidth label="Strasse" className="field" />
+          <TextField variant="outlined" label="Haus Nr. " className="field" />
+        </div>
+        <TextField variant="outlined" fullWidth label="Addresszusatz " className="field" />
+        <div className="field-group">
+          <TextField
+            variant="outlined"
+            select
+            value="(СН)"
+            className="select-wrapper"
+            // onChange={handleChangeCurrency}
+          >
+            <MenuItem value="(СН)">(СН)</MenuItem>
+            <MenuItem value="(СН 1)">(СН)</MenuItem>
+            <MenuItem value="(СН 2)">(СН)</MenuItem>
+          </TextField>
+          <TextField variant="outlined" required label="PLZ" className="field" />
+          <TextField variant="outlined" required fullWidth label="Ort" className="field" />
+        </div>
       </div>
-      <TextField variant="outlined" required fullWidth label="Name 1" className="field" />
-      <TextField variant="outlined" fullWidth label="Name 2" className="field" />
-      <div className="field-group">
-        <TextField variant="outlined" required fullWidth label="Strasse" className="field" />
-        <TextField variant="outlined" label="Haus Nr. " className="field" />
-      </div>
-      <TextField variant="outlined" fullWidth label="Addresszusatz " className="field" />
-      <div className="field-group">
+      <Divider orientation="vertical" className="divider" />
+      <div className="fileds-list">
+        <div className="field-group">
+          <TextField variant="outlined" fullWidth label="Telephone 1" className="field" />
+          <TextField variant="outlined" fullWidth label="Telephone 2" className="field" />
+        </div>
+        <div className="field-group">
+          <TextField variant="outlined" fullWidth label="E-Mail" className="field" />
+          <TextField variant="outlined" fullWidth label="Webseite" className="field" />
+        </div>
         <TextField
+          multiline
+          rows={11}
           variant="outlined"
-          select
-          value="(СН)"
-          className="select-wrapper"
-          // onChange={handleChangeCurrency}
-        >
-          <MenuItem value="(СН)">(СН)</MenuItem>
-          <MenuItem value="(СН 1)">(СН)</MenuItem>
-          <MenuItem value="(СН 2)">(СН)</MenuItem>
-        </TextField>
-        <TextField variant="outlined" required label="PLZ" className="field" />
-        <TextField variant="outlined" required fullWidth label="Ort" className="field" />
+          fullWidth
+          label="Notiz/Bemerkungen"
+          className="field"
+        />
       </div>
-    </div>
-    <Divider orientation="vertical" className="divider" />
-    <div className="fileds-list">
-      <div className="field-group">
-        <TextField variant="outlined" fullWidth label="Telephone 1" className="field" />
-        <TextField variant="outlined" fullWidth label="Telephone 2" className="field" />
-      </div>
-      <div className="field-group">
-        <TextField variant="outlined" fullWidth label="E-Mail" className="field" />
-        <TextField variant="outlined" fullWidth label="Webseite" className="field" />
-      </div>
-      <TextField
-        multiline
-        rows={11}
-        variant="outlined"
-        fullWidth
-        label="Notiz/Bemerkungen"
-        className="field"
-      />
-    </div>
-  </StyledAllgemein>
-);
+    </StyledAllgemein>
+  );
+};
 
 const StyledAllgemein = styled.div`
   display: grid;

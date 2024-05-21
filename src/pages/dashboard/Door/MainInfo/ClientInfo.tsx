@@ -7,37 +7,47 @@ export const ClientInfo = () => (
     <div className="header">
       <Avatar color="warning">M</Avatar> <Typography variant="h6">Migros AG</Typography>
     </div>
-    <Typography variant="subtitle2" fontWeight={600} className="main-info">
-      Genossenschaft Migros Zürich <br />
-      Pfingstweidstrasse 101 <br />
-      8005 Zürich <br />
-      Schweiz
-    </Typography>
-
-    <div className="text-group-item">
-      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-        Telefon 1
-      </Typography>
+    <div className="info-wrapper">
       <div>
-        <Typography variant="body2" fontWeight={600}>
-          +41058 561 51 11
+        <Typography variant="subtitle2" fontWeight={600} className="main-info">
+          Genossenschaft Migros Zürich <br />
+          Pfingstweidstrasse 101 <br />
+          8005 Zürich <br />
+          Schweiz
         </Typography>
       </div>
-    </div>
-    <div className="text-group-item">
-      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-        Telefon 2
-      </Typography>
       <div>
-        <Typography variant="body2" fontWeight={600}>
-          +41058 561 51 22
-        </Typography>
+        <div className="text-group-item">
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            Telefon 1
+          </Typography>
+          <div>
+            <Typography variant="body2" fontWeight={600}>
+              +41058 561 51 11
+            </Typography>
+          </div>
+        </div>
+        <div className="text-group-item">
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            Telefon 2
+          </Typography>
+          <div>
+            <Typography variant="body2" fontWeight={600}>
+              +41058 561 51 22
+            </Typography>
+          </div>
+        </div>
       </div>
     </div>
   </StyledClientInfo>
 );
 
 const StyledClientInfo = styled.div`
+  .info-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
   .header {
     display: flex;
     align-items: center;

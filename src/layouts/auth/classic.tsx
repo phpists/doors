@@ -70,6 +70,7 @@ export default function AuthClassicLayout({ children, image, title }: Props) {
       style={{
         width: 150,
       }}
+      big
     />
   );
 

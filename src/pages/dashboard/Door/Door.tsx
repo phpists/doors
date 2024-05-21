@@ -7,9 +7,11 @@ import { MainInfo } from './MainInfo/MainInfo';
 
 const Door = () => (
   <StyledDoor>
-    <BackButton />
     <div className="door-header">
-      <MainInfo />
+      <div>
+        <BackButton />
+        <MainInfo />
+      </div>
       <Statistic />
     </div>
     <Actions />
@@ -20,8 +22,9 @@ const StyledDoor = styled.div`
   padding: 0 10px;
   .door-header {
     display: grid;
-    grid-template-columns: max-content 1fr;
+    grid-template-columns: 1fr 50%;
     gap: 20px;
+    justify-content: center;
     @media (max-width: 1000px) {
       grid-template-columns: 1fr;
     }

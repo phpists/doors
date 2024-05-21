@@ -75,15 +75,25 @@ table {
   border-radius: 10px;
 }
 
-.auth-wrapper {
-  display: grid !important;
-  grid-template-columns: 50% 50% !important;
-}
-
-.auth-wrapper-content {
-  justify-self: start;
-}
-
 .MuiDialogTitle-root {
   text-align: center;
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+}
+@media (min-width: 900px) {
+  .auth-wrapper {
+    display: grid !important;
+    grid-template-columns: 50% 50% !important;
+  }
+
+  .auth-wrapper-content {
+    justify-self: start;
+  }
+}
+
+.MuiToolbar-regular {
+  padding-left: 24px !important;
 }

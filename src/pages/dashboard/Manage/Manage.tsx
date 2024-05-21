@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import { Tab, Tabs, Typography } from '@mui/material';
+import { Tab, Tabs } from '@mui/material';
 
 import { IntegrationsTable } from './IntegrationsTable';
 

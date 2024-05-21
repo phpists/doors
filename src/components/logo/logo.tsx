@@ -7,6 +7,7 @@ import Box, { BoxProps } from '@mui/material/Box';
 import { RouterLink } from 'src/routes/components';
 
 import logoIcon from 'src/assets/icons/logo.png';
+import logoBigIcon from 'src/assets/icons/logo-big.png';
 import logoSmallIcon from 'src/assets/icons/logo-small.png';
 
 // ----------------------------------------------------------------------
@@ -14,12 +15,12 @@ import logoSmallIcon from 'src/assets/icons/logo-small.png';
 export interface LogoProps extends BoxProps {
   disabledLink?: boolean;
   small?: boolean;
+  big?: boolean;
 }
 
 const Logo = forwardRef<HTMLDivElement, LogoProps>(
-  ({ disabledLink = false, small, sx, ...other }, ref) => {
+  ({ disabledLink = false, small, big, sx, ...other }, ref) => {
     const theme = useTheme();
-
     const PRIMARY_LIGHT = theme.palette.primary.light;
 
     const PRIMARY_MAIN = theme.palette.primary.main;
@@ -36,7 +37,15 @@ const Logo = forwardRef<HTMLDivElement, LogoProps>(
     //   />
     // );
 
-    console.log(small);
+    const handleGetLogoSize = () => {
+      if (big) {
+        return logoBigIcon;
+      }
+      if (small) {
+        return logoSmallIcon;
+      }
+      return logoIcon;
+    };
 
     const logo = (
       <Box
@@ -49,7 +58,7 @@ const Logo = forwardRef<HTMLDivElement, LogoProps>(
         }}
         {...other}
       >
-        <img src={small ? logoSmallIcon : logoIcon} alt="logo" />
+        <img src={handleGetLogoSize()} alt="logo" />
       </Box>
     );
 

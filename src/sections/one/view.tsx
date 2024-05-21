@@ -11,7 +11,7 @@ export default function OneView() {
   const settings = useSettingsContext();
 
   return (
-    <Container maxWidth={settings.themeStretch ? false : 'xl'}>
+    <Container style={{ maxWidth: '100%' }}>
       <Header />
       <ClientsTable />
     </Container>

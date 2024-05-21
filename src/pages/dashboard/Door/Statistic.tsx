@@ -51,9 +51,11 @@ const StyledStatistic = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+  margin-right: 5vw;
   .card-statistic {
     height: 100%;
     justify-content: center;
+    padding: 20px;
   }
   svg {
     height: 60px;

@@ -44,13 +44,7 @@ export const Info = () => (
           </Typography>
           <div>
             <Typography variant="body2" fontWeight={600}>
-              Hausimollstrasse 1
-            </Typography>
-            <Typography variant="body2" fontWeight={600}>
-              4622 Egerkingen
-            </Typography>
-            <Typography variant="body2" fontWeight={600}>
-              CH Schweiz
+              Hausimollstrasse 1 4622 Egerkingen CH Schweiz
             </Typography>
           </div>
         </div>

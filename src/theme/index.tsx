@@ -30,7 +30,7 @@ export default function ThemeProvider({ children }: Props) {
 
   const settings = useSettingsContext();
 
-  const presets = createPresets(settings.themeColorPresets);
+  const presets = createPresets('red');
 
   const contrast = createContrast('bold', settings.themeMode);
 
